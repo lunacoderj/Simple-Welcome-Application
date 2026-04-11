@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    MINI TOPIC CARD BACKGROUND
+    Dark glass card for the topic tiles (Deep Learning, NLP, CV)
+-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#FFFFFFFF" />
+    <solid android:color="#12FFFFFF" />
     <corners android:radius="16dp" />
     <stroke
         android:width="1dp"
-        android:color="#1A000000" />
+        android:color="#20FFFFFF" />
 </shape>

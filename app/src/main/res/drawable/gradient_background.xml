@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    GRADIENT BACKGROUND
+    Deep navy to dark purple — creates a "deep space" feel
+    perfect for an AI/futuristic theme
+-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <gradient
-        android:angle="135"
-        android:startColor="#FF7C4DFF"
-        android:centerColor="#FF536DFE"
-        android:endColor="#FF00BFA5"
+        android:angle="160"
+        android:startColor="@color/bg_primary"
+        android:centerColor="#0F1338"
+        android:endColor="@color/bg_secondary"
         android:type="linear" />
-    <corners android:radius="16dp" />
 </shape>

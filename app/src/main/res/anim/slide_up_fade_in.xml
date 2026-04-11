@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    SLIDE UP + FADE IN
+    Combined entrance animation — element slides up
+    from below while fading in. Used for staggered content entrance.
+-->
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="400"
-    android:interpolator="@android:anim/decelerate_interpolator">
+    android:interpolator="@android:interpolator/decelerate_cubic">
+
     <translate
-        android:fromYDelta="40dp"
-        android:toYDelta="0" />
+        android:fromYDelta="60%"
+        android:toYDelta="0%"
+        android:duration="700" />
+
     <alpha
         android:fromAlpha="0.0"
-        android:toAlpha="1.0" />
+        android:toAlpha="1.0"
+        android:duration="700" />
+
 </set>

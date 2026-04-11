@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ambient GREEN glow — decorative floating circle -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:gradientRadius="80dp"
+        android:startColor="@color/glow_green"
+        android:endColor="#0000FF88"
+        android:type="radial" />
+</shape>

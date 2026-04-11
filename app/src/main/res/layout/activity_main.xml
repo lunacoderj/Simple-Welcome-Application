@@ -1,15 +1,441 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_coordinator"
+<!--
+    ═══════════════════════════════════════════════════
+    AI & ML ENGINEERING — WELCOME SCREEN LAYOUT
+    ═══════════════════════════════════════════════════
+
+    UI MORPHISM PRINCIPLES USED:
+    1. Glassmorphism  → glass_card_bg (blur + transparency)
+    2. Neumorphism    → neu_button_bg (soft raised gradient)
+    3. Motion morphism → animations applied in MainActivity.kt
+
+    LAYOUT STRUCTURE:
+    FrameLayout (root — allows overlapping glow circles)
+    ├── 3x Glow circles (ambient background decoration)
+    └── ScrollView → LinearLayout (actual content)
+        ├── AI brain icon (animated)
+        ├── Welcome title (typewriter effect)
+        ├── Subtitle TextSwitcher (auto-cycling messages)
+        ├── Dot indicators
+        ├── Glassmorphic expandable info card
+        ├── Neumorphic "Discover More" button
+        ├── 3x Mini topic cards (Deep Learning, NLP, CV)
+        └── Footer text
+-->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:background="@drawable/gradient_background"
+    tools:context=".MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/compose_host"
+    <!-- ═══════════════════════════════════════
+         AMBIENT GLOW CIRCLES
+         Decorative background elements that float
+         with gentle animation (set in Activity)
+         ═══════════════════════════════════════ -->
+
+    <ImageView
+        android:id="@+id/glowCyan"
+        android:layout_width="@dimen/glow_large"
+        android:layout_height="@dimen/glow_large"
+        android:layout_marginStart="-80dp"
+        android:layout_marginTop="-40dp"
+        android:src="@drawable/glow_circle_cyan"
+        android:contentDescription="@string/cd_glow"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/glowPurple"
+        android:layout_width="@dimen/glow_medium"
+        android:layout_height="@dimen/glow_medium"
+        android:layout_gravity="end"
+        android:layout_marginEnd="-60dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/glow_circle_purple"
+        android:contentDescription="@string/cd_glow"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/glowGreen"
+        android:layout_width="@dimen/glow_small"
+        android:layout_height="@dimen/glow_small"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/glow_circle_green"
+        android:contentDescription="@string/cd_glow"
+        android:importantForAccessibility="no" />
+
+    <!-- ═══════════════════════════════════════
+         MAIN CONTENT (Scrollable)
+         ═══════════════════════════════════════ -->
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="@dimen/space_lg"
+            android:paddingTop="@dimen/space_xxl"
+            android:paddingBottom="@dimen/space_xl">
+
+            <!-- ═══════════════════════════════
+                 AI BRAIN ICON
+                 Animated with pulse + rotation
+                 ═══════════════════════════════ -->
+
+            <ImageView
+                android:id="@+id/aiIcon"
+                android:layout_width="@dimen/ai_icon_size"
+                android:layout_height="@dimen/ai_icon_size"
+                android:src="@drawable/ic_ai_brain"
+                android:contentDescription="@string/cd_ai_icon"
+                android:alpha="0"
+                tools:alpha="1" />
+
+            <android.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_lg" />
+
+            <!-- ═══════════════════════════════
+                 WELCOME TITLE
+                 "Welcome to" (small) + "AI & ML Engineering" (large hero)
+                 Typewriter animation applied in code
+                 ═══════════════════════════════ -->
+
+            <!-- Small prefix text -->
+            <TextView
+                android:id="@+id/welcomePrefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_prefix"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_subtitle"
+                android:letterSpacing="0.15"
+                android:alpha="0"
+                tools:alpha="1" />
+
+            <!-- Large hero title -->
+            <TextView
+                android:id="@+id/welcomeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/accent_cyan"
+                android:textSize="@dimen/text_hero"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.1"
+                android:alpha="0"
+                tools:text="@string/welcome_title"
+                tools:alpha="1" />
+
+            <android.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_md" />
+
+            <!-- ═══════════════════════════════
+                 CYCLING SUBTITLE
+                 TextSwitcher with fade animation
+                 Messages change every 3 seconds
+                 ═══════════════════════════════ -->
+
+            <TextSwitcher
+                android:id="@+id/subtitleSwitcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inAnimation="@anim/fade_in"
+                android:outAnimation="@anim/fade_out"
+                android:alpha="0"
+                tools:alpha="1" />
+
+            <android.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_md" />
+
+            <!-- ═══════════════════════════════
+                 DOT INDICATORS
+                 Show which cycling message is active
+                 ═══════════════════════════════ -->
+
+            <LinearLayout
+                android:id="@+id/dotsContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:alpha="0"
+                tools:alpha="1" />
+
+            <android.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_xl" />
+
+            <!-- ═══════════════════════════════════════
+                 GLASSMORPHIC INFO CARD (Expandable)
+                 Tap to reveal/hide detailed AI/ML info
+                 Uses glass_card_bg for frosted glass effect
+                 ═══════════════════════════════════════ -->
+
+            <LinearLayout
+                android:id="@+id/infoCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/glass_card_bg"
+                android:padding="@dimen/card_padding"
+                android:clickable="true"
+                android:focusable="true"
+                android:alpha="0"
+                tools:alpha="1">
+
+                <!-- Card header row: title + chevron icon -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Icon -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🧠"
+                        android:textSize="22sp" />
+
+                    <android.widget.Space
+                        android:layout_width="@dimen/space_sm"
+                        android:layout_height="0dp" />
+
+                    <!-- Title -->
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/card_title"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Expand/collapse chevron -->
+                    <ImageView
+                        android:id="@+id/chevronIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_chevron_down"
+                        android:contentDescription="@string/cd_expand" />
+
+                </LinearLayout>
+
+                <!-- Expandable content (hidden by default) -->
+                <TextView
+                    android:id="@+id/cardBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/card_body"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_body"
+                    android:lineSpacingMultiplier="1.5"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <android.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_lg" />
+
+            <!-- ═══════════════════════════════════════
+                 NEUMORPHIC "DISCOVER MORE" BUTTON
+                 Changes the welcome message on each press
+                 Uses gradient background for raised soft UI feel
+                 ═══════════════════════════════════════ -->
+
+            <TextView
+                android:id="@+id/discoverButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/neu_button_bg"
+                android:text="@string/btn_discover"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:alpha="0"
+                tools:alpha="1" />
+
+            <android.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_xl" />
+
+            <!-- ═══════════════════════════════════════
+                 MINI TOPIC CARDS ROW
+                 Three cards for: Deep Learning, NLP, Computer Vision
+                 Each uses glassmorphic mini_card_bg
+                 ═══════════════════════════════════════ -->
+
+            <LinearLayout
+                android:id="@+id/topicCardsRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:alpha="0"
+                tools:alpha="1">
+
+                <!-- Deep Learning card -->
+                <LinearLayout
+                    android:id="@+id/cardDL"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/space_sm"
+                    android:orientation="vertical"
+                    android:background="@drawable/mini_card_bg"
+                    android:padding="@dimen/space_md"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔮"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_sm"
+                        android:text="@string/topic_dl"
+                        android:textColor="@color/accent_purple"
+                        android:textSize="@dimen/text_caption"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:text="@string/topic_dl_desc"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <!-- NLP card -->
+                <LinearLayout
+                    android:id="@+id/cardNLP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="@dimen/space_xs"
+                    android:orientation="vertical"
+                    android:background="@drawable/mini_card_bg"
+                    android:padding="@dimen/space_md"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💬"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_sm"
+                        android:text="@string/topic_nlp"
+                        android:textColor="@color/accent_green"
+                        android:textSize="@dimen/text_caption"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:text="@string/topic_nlp_desc"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <!-- Computer Vision card -->
+                <LinearLayout
+                    android:id="@+id/cardCV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:orientation="vertical"
+                    android:background="@drawable/mini_card_bg"
+                    android:padding="@dimen/space_md"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👁️"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_sm"
+                        android:text="@string/topic_cv"
+                        android:textColor="@color/accent_cyan"
+                        android:textSize="@dimen/text_caption"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:text="@string/topic_cv_desc"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_xl" />
+
+            <!-- ═══════════════════════════════
+                 FOOTER
+                 ═══════════════════════════════ -->
+
+            <TextView
+                android:id="@+id/footerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/footer_text"
+                android:textColor="@color/text_muted"
+                android:textSize="@dimen/text_caption"
+                android:letterSpacing="0.1"
+                android:alpha="0"
+                tools:alpha="1" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

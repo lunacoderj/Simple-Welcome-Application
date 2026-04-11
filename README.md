@@ -1,435 +1,68 @@
-# 🤖 MAD Showcase
+# 🤖 AI & ML Welcome Application
 
-### A Complete Android Application Covering 10 MAD Tasks
-
-A **production-grade, single unified Android project** built entirely in **Kotlin** that implements all 10 Mini Android Development (MAD) tasks. Each task is a dedicated screen navigated from an animated home dashboard with Material 3 design, rich animations, and Clean Architecture.
+A modern, interactive Android application built for **AI & Machine Learning engineering students**. This app replaces the basic "Welcome to Android" layout with a futuristic, immersive onboarding experience.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Kotlin_100%25-7F52FF?logo=kotlin&logoColor=white" />
-  <img src="https://img.shields.io/badge/UI-Jetpack_Compose_+_XML-4285F4?logo=jetpackcompose&logoColor=white" />
-  <img src="https://img.shields.io/badge/Material-3_Dynamic_Color-00BFA5" />
+  <img src="https://img.shields.io/badge/Architecture-Clean_ViewBinding-4285F4" />
+  <img src="https://img.shields.io/badge/UI_Style-Glassmorphism_|_Neumorphism-00BFA5" />
   <img src="https://img.shields.io/badge/API-26+-brightgreen" />
-  <img src="https://img.shields.io/badge/Target_SDK-34-blue" />
 </p>
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+## ✨ Features
 
+### 🌟 Immersive UI Morphism
+- **Glassmorphism**: Info cards utilize frosted glass effects (transparency + blur + subtle borders).
+- **Neumorphism**: Buttons feature soft-raised gradients that provide a physical feel.
+- **Motion Morphism**: The background features "glow circles" that float gently, creating a dynamic, alive interface.
+
+### 🧠 Interactive AI Content
+- **Animated Typewriter**: The main title "Welcome to AI & ML Engineering" reveals itself character-by-character.
+- **Auto-Cycling Messages**: Subtitles change every 3 seconds to inspire students:
+  - *Build Intelligent Systems*
+  - *Explore Neural Networks*
+  - *Shape the Future with AI*
+- **Dot Indicators**: Real-time visual tracking of currently active cycling messages.
+
+### 🔘 User Interaction Logic
+- **Expandable Info Card**: Tap the "About AI & ML" card to reveal a detailed overview with a smooth chevron rotation animation.
+- **Dynamic Content Button**: The "Discover More" button allows users to manually cycle through AI themes with a spring press effect.
+- **Mini Topic Tiles**: Clickable cards for Deep Learning, NLP, and Computer Vision with interactive scale animations.
+
+---
+
+## 🏗️ Technical Implementation
+
+### Architecture
+- **Language**: 100% Kotlin
+- **Layout**: Android XML with Constraint/Linear combinations
+- **View Binding**: Safe and efficient access to UI components
+- **Animations**: A mix of XML animators and Programmatic `ObjectAnimator` for complexity.
+
+### Project Structure
 ```
-┌─────────────────────────────────────────────────────┐
-│                    UI Layer                         │
-│  Jetpack Compose  ·  XML Layouts  ·  Material 3    │
-├─────────────────────────────────────────────────────┤
-│                 ViewModel Layer                     │
-│  MVVM  ·  StateFlow  ·  LiveData  ·  Coroutines    │
-├─────────────────────────────────────────────────────┤
-│                 Repository Layer                    │
-│  PostRepository  ·  TaskRepository  ·  DataStore    │
-├─────────────────────────────────────────────────────┤
-│                   Data Layer                        │
-│  Retrofit2  ·  OkHttp3  ·  Gson  ·  SharedPrefs    │
-└─────────────────────────────────────────────────────┘
-```
-
-| Component          | Technology                                        |
-|--------------------|--------------------------------------------------|
-| **Language**       | Kotlin (100%)                                     |
-| **UI Framework**   | Jetpack Compose (Home, Tasks 1–3, 6, 8–10) + XML (Tasks 4, 5, 7) |
-| **Architecture**   | MVVM + Repository pattern (Clean Architecture)    |
-| **Navigation**     | Compose `AnimatedContent` with slide/fade transitions |
-| **Networking**     | Retrofit2 + OkHttp3 with logging interceptor + Gson |
-| **Async**          | Kotlin Coroutines + `StateFlow` + `LiveData`      |
-| **Persistence**    | SharedPreferences + DataStore                     |
-| **Build System**   | Gradle KTS (Kotlin DSL)                           |
-| **Min / Target SDK** | API 26 (Android 8.0) / API 34 (Android 14)     |
-| **Theme**          | Material 3 with Dynamic Color (API 31+ fallback: purple-teal) |
-| **Logging**        | Timber with custom file/line tag format           |
-| **Image Loading**  | Coil Compose                                      |
-| **Animations**     | Compose Animation APIs + XML `anim/` resources    |
-
----
-
-## 📱 Screens & Task Details
-
-### 🏠 Home Dashboard
-> The central hub for navigating all 10 tasks.
-
-- **Compose `LazyVerticalGrid`** with 2-column card layout
-- **Gradient hero banner** with time-aware greeting (`Good morning / afternoon / evening, Dev! 👋`)
-- **Search bar** filters tasks by name, description, or CO label in real time
-- **10 task cards** with staggered `fadeIn + scaleIn` entrance (index × 60ms delay)
-- Each card: colored icon, title, CO badge, animated relevance bar
-- **Spring press animation** — cards scale to 0.95 on press with bounce
-
----
-
-### Task 1 — Welcome Screen `CO1`
-> Animated intro with Jetpack Compose.
-
-| Feature | Implementation |
-|---------|---------------|
-| Typewriter text | Character-by-character reveal at 80ms intervals via coroutine |
-| Robot animation | 🤖 emoji with infinite bounce (`tween` 800ms, `EaseInOutCubic`) |
-| Shimmer gradient | `Brush.linearGradient` with animated offset (2000ms loop) |
-| Auto-navigation | Crossfade to HomeScreen after 2.5s delay |
-| Progress dots | 10 dots with staggered `scaleIn` (100ms per dot, spring damping 0.4) |
-
----
-
-### Task 2 — Toast Interaction `CO2`
-> Custom snackbar, haptics, and confetti.
-
-| Feature | Implementation |
-|---------|---------------|
-| Custom snackbar | `AnimatedVisibility` with spring slide-in from bottom (replaces Toast) |
-| Click counter | `AnimatedContent` with scale-in/out transition |
-| Button press | `animateFloatAsState` → spring scale(0.95) |
-| Haptic feedback | `VibrationEffect.createOneShot(50ms)` on long press |
-| Confetti burst | 50 Canvas particles with velocity, gravity (0.3/frame), decay, 6 colors |
-
----
-
-### Task 3 — UI Components `CO2`
-> Material 3 form with validation and animations.
-
-| Feature | Implementation |
-|---------|---------------|
-| Animated labels | Material 3 `OutlinedTextField` with floating label |
-| Character counter | Fade-in `AnimatedVisibility` as user types |
-| Submit button | Color + scale transition based on `isFormValid` state |
-| Typewriter display | Submitted text revealed character-by-character (30ms/char) |
-| Shake validation | `Animatable` keyframe animation (±15dp → ±4dp dampening, 400ms) |
-
----
-
-### Task 4 — Activity Navigation `CO3`
-> Explicit Intent with scene transitions.
-
-| Feature | Implementation |
-|---------|---------------|
-| Glowing button | `rememberInfiniteTransition` pulsing alpha (0.3→0.8) + scale (1.0→1.15) |
-| Explicit Intent | `Intent(context, TargetActivity::class.java)` with extras |
-| Scene transition | `ActivityOptions.makeCustomAnimation` with slide animations |
-| Target Activity | `CollapsingToolbarLayout` + animated card entrance (`slide_up_fade_in`) |
-| Back navigation | Custom reverse animation (`slide_in_left` + `slide_out_right`) |
-
----
-
-### Task 5 — Data Passing `CO3`
-> Login flow with SharedPreferences and Intent extras.
-
-| Feature | Implementation |
-|---------|---------------|
-| Login form | Material 3 `TextInputLayout` with outlined style + rounded corners |
-| Persistence | `SharedPreferences` saves username + `has_logged_in` flag |
-| Data transfer | Intent `putExtra()` bundle with username + login timestamp |
-| Greeting card | Gradient card with `Hello, [Name]! 👋` + wave emoji rotation animation |
-| Welcome back | Checks `has_logged_in` preference → "Welcome back!" vs "Welcome!" |
-
----
-
-### Task 6 — Debugging `CO3`
-> Crash simulation, Timber logging, and fix-and-retry.
-
-| Feature | Implementation |
-|---------|---------------|
-| Crash simulation | `emptyList<String>()[0]` → `IndexOutOfBoundsException` |
-| Crash report card | Firebase Crashlytics–style UI: exception type, message, scrollable stack trace |
-| Stack trace viewer | Dark surface (`#1E1E1E`), monospace font, horizontal + vertical scroll |
-| Fix & Retry | Patches state with `.getOrNull()` + re-runs operation successfully |
-| Timber logging | Color-coded level badges (`D`=blue, `W`=yellow, `E`=red) in dark console panel |
-
----
-
-### Task 7 — Fragment Integration `CO4`
-> BottomNavigationView with 3 animated Fragments.
-
-| Feature | Implementation |
-|---------|---------------|
-| Host Activity | `FrameLayout` container with `MaterialToolbar` + `BottomNavigationView` |
-| InfoFragment | About/Architecture/Developer cards with gradient header |
-| StatsFragment | Statistics dashboard: 10 tasks · 5 COs · 100% Kotlin + skill progress bars |
-| GalleryFragment | 3-column `RecyclerView` grid (12 items) with staggered slide-up animation |
-| Fragment transitions | Custom `setCustomAnimations` with `slide_up_fade_in` / `slide_down_fade_out` |
-
----
-
-### Task 8 — RecyclerView `CO4`
-> Android versions list with search, layout toggle, and swipe-to-delete.
-
-| Feature | Implementation |
-|---------|---------------|
-| Data source | 21 Android versions (Cupcake → Vanilla Ice Cream) with name, API, date, emoji |
-| Layout toggle | Grid (2-col) ↔ List switch via `AnimatedContent` with fade transition |
-| Search | Real-time filter by name, codename, or API level; animated empty state |
-| Swipe-to-delete | `detectHorizontalDragGestures` → delete + spring undo snackbar (3s timeout) |
-| Pull-to-refresh | FAB triggers reload with `LinearProgressIndicator` |
-| Staggered entrance | Each item: `fadeIn + slideInVertically` with index × 50ms delay |
-
----
-
-### Task 9 — Implicit Intents `CO5`
-> 5 system intent action cards.
-
-| Action | Intent | Color |
-|--------|--------|-------|
-| 🌐 Open URL | `ACTION_VIEW` → `developer.android.com` | Blue |
-| 📤 Share Text | `ACTION_SEND` → chooser with app message | Green |
-| 🗺️ Open Map | `ACTION_VIEW` → `geo:` URI (Google HQ) | Orange |
-| 📧 Send Email | `ACTION_SENDTO` → `mailto:` URI | Pink |
-| 📞 Dial Number | `ACTION_DIAL` → `tel:` URI | Purple |
-
-- **Error handling**: `ActivityNotFoundException` → animated error card with install suggestion
-- **Recent actions**: Scrollable `LazyRow` chip group tracking last 10 actions
-- **Micro-interaction**: Spring scale(0.93) on card press
-
----
-
-### Task 10 — API Fetch `CO5`
-> Retrofit + Coroutines with pagination and state management.
-
-| Feature | Implementation |
-|---------|---------------|
-| API endpoint | `GET https://jsonplaceholder.typicode.com/posts` |
-| State management | `StateFlow<ApiUiState>`: `Loading` \| `Success(posts)` \| `Error(message)` |
-| Shimmer skeleton | 6 placeholder cards with animated `LinearGradient` brush (1200ms loop) |
-| Card layout | Post ID badge (circle), bold title (2 lines), body preview, user chip |
-| Pagination | `derivedStateOf` detects last 3 items visible → auto-loads next 10 posts |
-| Pull-to-refresh | Toolbar refresh button + `LinearProgressIndicator` |
-| Error state | 😵 illustration + pulsing retry button |
-| Entrance animation | Staggered `fadeIn + slideInVertically` per card (max 10 × 50ms) |
-
----
-
-## 🎨 Animation System
-
-| Category | Technique | Parameters |
-|----------|-----------|------------|
-| **Scroll Stagger** | `AnimatedVisibility` + `LaunchedEffect` delay | 50–80ms per item |
-| **Entrance** | `scaleIn(0.85) + fadeIn` | 300–400ms, `EaseOutCubic` |
-| **Press Feedback** | `animateFloatAsState` spring | scale(0.93–0.95), `DampingRatioMediumBouncy` |
-| **Shimmer** | `Brush.linearGradient` + animated offset | 1200–2000ms, `LinearEasing` |
-| **Confetti** | Canvas particle system | 50 particles, gravity 0.3/frame, life decay 0.008 |
-| **Shake** | `Animatable` keyframes | ±15dp → ±4dp over 400ms |
-| **Typewriter** | Coroutine `substring` + `delay` | 30–80ms per character |
-| **Count Up** | `animateIntAsState` / `AnimatedContent` | 300ms tween with scale transition |
-| **Screen Nav** | `AnimatedContent` slide + fade | `slideInHorizontally` / `slideOutHorizontally` |
-| **Glow Pulse** | `rememberInfiniteTransition` | Alpha 0.3→0.8, scale 1.0→1.15, 1200ms |
-
----
-
-## 📁 Project Structure (70 files)
-
-```
-MAD/
-├── build.gradle.kts                          # Root build — plugin versions
-├── settings.gradle.kts                       # Project settings + repositories
-├── gradle.properties                         # JVM + AndroidX config
-├── gradle/wrapper/
-│   └── gradle-wrapper.properties             # Gradle 8.4
-├── README.md
-│
-└── app/
-    ├── build.gradle.kts                      # 30+ dependencies (Compose, Retrofit, etc.)
-    ├── proguard-rules.pro                    # Keep rules for Retrofit, Gson, Coroutines
-    │
-    └── src/main/
-        ├── AndroidManifest.xml               # 5 Activities, 3 permissions
-        │
-        ├── java/com/mad/app/
-        │   ├── MADApplication.kt             # Timber init with custom tag format
-        │   ├── MainActivity.kt               # Compose host + AnimatedContent navigation
-        │   │
-        │   ├── data/
-        │   │   ├── model/
-        │   │   │   ├── TaskItem.kt           # 10 task definitions (icon, color, route)
-        │   │   │   ├── AndroidVersion.kt     # 21 Android versions dataset
-        │   │   │   └── Post.kt               # API response model (@SerializedName)
-        │   │   ├── remote/
-        │   │   │   ├── ApiService.kt          # Retrofit interface (GET /posts)
-        │   │   │   └── RetrofitClient.kt      # Singleton + OkHttp logging interceptor
-        │   │   └── repository/
-        │   │       └── PostRepository.kt      # Coroutine-based with Result<T>
-        │   │
-        │   └── ui/
-        │       ├── theme/
-        │       │   ├── Theme.kt              # M3 Dynamic Color + fallback scheme
-        │       │   └── Type.kt               # Full Typography scale
-        │       ├── home/
-        │       │   └── HomeScreen.kt         # Dashboard grid + hero + search
-        │       ├── welcome/
-        │       │   └── WelcomeScreen.kt      # Task 1: typewriter + shimmer
-        │       ├── toast/
-        │       │   └── ToastInteractionScreen.kt  # Task 2: snackbar + confetti
-        │       ├── components/
-        │       │   └── UIComponentsScreen.kt # Task 3: form + validation
-        │       ├── navigation/
-        │       │   ├── ActivityNavigationScreen.kt  # Task 4: launcher (Compose)
-        │       │   └── TargetActivity.kt     # Task 4: target (XML + ViewBinding)
-        │       ├── datapassing/
-        │       │   ├── DataPassingScreen.kt  # Task 5: launcher (Compose)
-        │       │   ├── LoginActivity.kt      # Task 5: login form (XML)
-        │       │   └── DashboardActivity.kt  # Task 5: greeting (XML)
-        │       ├── debugging/
-        │       │   └── DebuggingScreen.kt    # Task 6: crash report + logs
-        │       ├── fragments/
-        │       │   ├── FragmentIntegrationLauncher.kt  # Task 7: launcher (Compose)
-        │       │   ├── FragmentHostActivity.kt  # Task 7: host + BottomNav
-        │       │   ├── InfoFragment.kt       # About & architecture info
-        │       │   ├── StatsFragment.kt      # Statistics dashboard
-        │       │   └── GalleryFragment.kt    # Grid gallery + adapter
-        │       ├── recyclerview/
-        │       │   └── RecyclerViewScreen.kt # Task 8: list/grid + search
-        │       ├── implicit/
-        │       │   └── ImplicitIntentScreen.kt  # Task 9: 5 intent actions
-        │       └── api/
-        │           ├── ApiViewModel.kt       # StateFlow + pagination logic
-        │           └── APIFetchScreen.kt     # Task 10: shimmer + cards
-        │
-        └── res/
-            ├── anim/                         # 8 animation XMLs
-            │   ├── slide_in_right.xml
-            │   ├── slide_out_left.xml
-            │   ├── slide_in_left.xml
-            │   ├── slide_out_right.xml
-            │   ├── slide_up_fade_in.xml
-            │   ├── slide_down_fade_out.xml
-            │   ├── scale_fade_in.xml
-            │   └── shake.xml
-            ├── drawable/                     # 8 drawable XMLs
-            │   ├── gradient_background.xml   # Purple→Teal 135° gradient
-            │   ├── ripple_card.xml           # Custom colored ripple
-            │   ├── rounded_card_bg.xml
-            │   ├── circle_icon_bg.xml
-            │   ├── error_card_bg.xml
-            │   ├── fade_scrim.xml
-            │   ├── ic_app_logo.xml           # Vector Android robot logo
-            │   └── ic_arrow_back.xml         # Back arrow vector
-            ├── layout/                       # 9 XML layouts
-            │   ├── activity_main.xml
-            │   ├── activity_target.xml       # CollapsingToolbar
-            │   ├── activity_login.xml        # TextInputLayouts
-            │   ├── activity_dashboard.xml    # Greeting card
-            │   ├── activity_fragment_host.xml  # FrameLayout + BottomNav
-            │   ├── fragment_info.xml
-            │   ├── fragment_stats.xml
-            │   ├── fragment_gallery.xml
-            │   ├── item_android_version.xml  # RecyclerView item
-            │   └── item_gallery.xml          # Gallery grid item
-            ├── menu/
-            │   └── menu_bottom_fragments.xml # Info · Stats · Gallery
-            ├── mipmap-anydpi-v26/
-            │   ├── ic_launcher.xml
-            │   └── ic_launcher_round.xml
-            └── values/
-                ├── colors.xml                # M3 palette + task accents + status colors
-                ├── strings.xml               # All user-facing strings
-                ├── dimens.xml                # Spacing, card, text, icon dimensions
-                └── themes.xml                # M3 NoActionBar theme + widget styles
+app/src/main/
+├── java/com/mad/app/
+│   └── MainActivity.kt            # Core logic & animation management
+├── res/
+│   ├── anim/                      # fade_in, fade_out, slide_up, pop_in
+│   ├── drawable/                  # glass_card_bg, neu_button_bg, ambient glows
+│   ├── layout/                    # activity_main.xml (the heart of the UI)
+│   └── values/                    # AI palette colors, strings, dimens, themes
+└── AndroidManifest.xml
 ```
 
 ---
 
-## 🚀 Setup Instructions
+## 🚀 Getting Started
 
-### Prerequisites
-| Requirement | Version |
-|-------------|---------|
-| Android Studio | Hedgehog 2023.1.1 or later |
-| JDK | 17 |
-| Android SDK | 34 (compile & target) |
-| Gradle | 8.4 (bundled via wrapper) |
-| Device / Emulator | API 26+ (Android 8.0 Oreo) |
-
-### Steps
-```bash
-# 1. Clone the repository
-git clone <repo-url>
-cd MAD
-
-# 2. Open in Android Studio
-#    File → Open → select the MAD directory
-
-# 3. Wait for Gradle sync to complete
-#    All 30+ dependencies download automatically
-
-# 4. Build & Run
-#    Select a device/emulator (API 26+) → click Run ▶
-```
-
-> **Note:** On first build, Gradle will download ~200 MB of dependencies. Subsequent builds are cached.
+1. **Clone** the project.
+2. **Open** in Android Studio (Hedgehog or newer).
+3. **Sync** Gradle to download dependencies (Lottie, Material 3, etc.).
+4. **Run** on any device or emulator (API 26+).
 
 ---
 
-## 📋 Permissions
-
-| Permission | Usage | Required By |
-|------------|-------|-------------|
-| `INTERNET` | Fetching posts from JSONPlaceholder API | Task 10 |
-| `ACCESS_NETWORK_STATE` | Checking connectivity before API calls | Task 10 |
-| `VIBRATE` | Haptic feedback on long press | Task 2 |
-
----
-
-## 🎯 Course Outcome (CO) Coverage
-
-| CO | Tasks | Topics Covered |
-|----|-------|---------------|
-| **CO1** | Task 1 | Jetpack Compose basics, UI animations, coroutines |
-| **CO2** | Task 2, 3 | User interactions, snackbars, form validation, Material 3 components |
-| **CO3** | Task 4, 5, 6 | Activity lifecycle, explicit intents, data persistence, debugging |
-| **CO4** | Task 7, 8 | Fragments, BottomNavigation, RecyclerView, DiffUtil, layout management |
-| **CO5** | Task 9, 10 | Implicit intents, Retrofit networking, coroutines, MVVM state management |
-
----
-
-## 📦 Key Dependencies
-
-```kotlin
-// Compose BOM 2024.01.00
-androidx.compose.material3:material3
-androidx.compose.material:material-icons-extended
-androidx.compose.animation:animation
-
-// Navigation
-androidx.navigation:navigation-compose:2.7.6
-
-// Networking
-com.squareup.retrofit2:retrofit:2.9.0
-com.squareup.okhttp3:logging-interceptor:4.12.0
-
-// Lifecycle
-androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0
-androidx.lifecycle:lifecycle-runtime-compose:2.7.0
-
-// Logging
-com.jakewharton.timber:timber:5.0.1
-
-// UI
-com.google.android.material:material:1.11.0
-com.airbnb.android:lottie-compose:6.3.0
-```
-
----
-
-## 📊 Project Stats
-
-| Metric | Count |
-|--------|-------|
-| Total files | **70** |
-| Kotlin source files | **22** |
-| XML resource files | **38** |
-| Lines of Kotlin | ~3,500+ |
-| Dependencies | 30+ |
-| Activities | 5 |
-| Fragments | 3 |
-| ViewModels | 1 (extensible) |
-| API endpoints | 2 (list + paginated) |
-| Custom animations | 16+ (8 XML + 8 Compose) |
-
----
-
-<p align="center">
-  Built with ❤️ using <b>Kotlin</b>, <b>Jetpack Compose</b>, and <b>Material Design 3</b>
-</p>
+Built with ❤️ for AI & ML Engineers.

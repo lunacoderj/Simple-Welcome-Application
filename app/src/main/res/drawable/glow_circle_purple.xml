@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ambient PURPLE glow — decorative floating circle -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:gradientRadius="100dp"
+        android:startColor="@color/glow_purple"
+        android:endColor="#007B61FF"
+        android:type="radial" />
+</shape>

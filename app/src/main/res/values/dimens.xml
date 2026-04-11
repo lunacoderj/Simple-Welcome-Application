@@ -1,48 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Spacing -->
-    <dimen name="spacing_xxs">2dp</dimen>
-    <dimen name="spacing_xs">4dp</dimen>
-    <dimen name="spacing_sm">8dp</dimen>
-    <dimen name="spacing_md">16dp</dimen>
-    <dimen name="spacing_lg">24dp</dimen>
-    <dimen name="spacing_xl">32dp</dimen>
-    <dimen name="spacing_xxl">48dp</dimen>
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">24dp</dimen>
+    <dimen name="space_xl">32dp</dimen>
+    <dimen name="space_xxl">48dp</dimen>
 
-    <!-- Card -->
-    <dimen name="card_elevation">4dp</dimen>
-    <dimen name="card_corner_radius">16dp</dimen>
-    <dimen name="card_padding">16dp</dimen>
+    <!-- Card styling -->
+    <dimen name="card_radius">20dp</dimen>
+    <dimen name="card_padding">20dp</dimen>
+    <dimen name="card_elevation">0dp</dimen>
 
-    <!-- Text -->
-    <dimen name="text_h1">28sp</dimen>
-    <dimen name="text_h2">24sp</dimen>
-    <dimen name="text_h3">20sp</dimen>
-    <dimen name="text_body">16sp</dimen>
+    <!-- Button styling -->
+    <dimen name="button_radius">16dp</dimen>
+    <dimen name="button_height">56dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="text_hero">32sp</dimen>
+    <dimen name="text_subtitle">18sp</dimen>
+    <dimen name="text_body">14sp</dimen>
     <dimen name="text_caption">12sp</dimen>
-    <dimen name="text_badge">10sp</dimen>
 
-    <!-- Icons -->
-    <dimen name="icon_sm">24dp</dimen>
-    <dimen name="icon_md">40dp</dimen>
-    <dimen name="icon_lg">56dp</dimen>
-    <dimen name="icon_xl">80dp</dimen>
+    <!-- Glow circle sizes -->
+    <dimen name="glow_large">280dp</dimen>
+    <dimen name="glow_medium">200dp</dimen>
+    <dimen name="glow_small">160dp</dimen>
 
-    <!-- Toolbar -->
-    <dimen name="toolbar_expanded_height">200dp</dimen>
-    <dimen name="toolbar_collapsed_height">56dp</dimen>
+    <!-- AI icon size -->
+    <dimen name="ai_icon_size">120dp</dimen>
 
-    <!-- FAB -->
-    <dimen name="fab_size">56dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-
-    <!-- Button -->
-    <dimen name="button_height">48dp</dimen>
-    <dimen name="button_corner_radius">24dp</dimen>
-
-    <!-- Bottom Nav -->
-    <dimen name="bottom_nav_height">64dp</dimen>
-
-    <!-- Animation -->
-    <dimen name="slide_offset">40dp</dimen>
+    <!-- Dot indicator -->
+    <dimen name="dot_size">8dp</dimen>
+    <dimen name="dot_spacing">6dp</dimen>
 </resources>

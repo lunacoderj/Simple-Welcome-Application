@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Active dot indicator — glowing cyan circle -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/dot_active" />
+    <size
+        android:width="@dimen/dot_size"
+        android:height="@dimen/dot_size" />
+</shape>
