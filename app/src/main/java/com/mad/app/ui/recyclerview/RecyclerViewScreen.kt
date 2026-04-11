@@ -225,7 +225,7 @@ fun RecyclerViewScreen(onBack: () -> Unit) {
             }
 
             // Undo Snackbar
-            AnimatedVisibility(
+            androidx.compose.animation.AnimatedVisibility(
                 visible = showUndo,
                 enter = slideInVertically(
                     spring(dampingRatio = 0.6f),
