@@ -7,10 +7,10 @@ A state-of-the-art Android application designed for **Artificial Intelligence & 
 ## 📸 App Walkthrough
 
 <p align="center">
-  <img src="screenshots/home.png" width="22%" />
-  <img src="screenshots/about.png" width="22%" />
-  <img src="screenshots/courses.png" width="22%" />
-  <img src="screenshots/contact.png" width="22%" />
+  <img width="389" height="853" alt="Screenshot 2026-04-13 114220" src="https://github.com/user-attachments/assets/f2772209-2914-467e-83c8-7fed6aef4c01" />
+  <img width="391" height="852" alt="Screenshot 2026-04-13 114230" src="https://github.com/user-attachments/assets/2ee246d2-f759-4476-9e14-551c98979c90" />
+  <img width="390" height="839" alt="Screenshot 2026-04-13 115550" src="https://github.com/user-attachments/assets/3aeac854-5332-4177-b53f-2fd407c52151" />
+  <img width="385" height="837" alt="Screenshot 2026-04-13 115642" src="https://github.com/user-attachments/assets/891e4180-adc3-4ccb-af83-945636cb44cf" />
 </p>
 
 ---
