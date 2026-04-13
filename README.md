@@ -1,68 +1,74 @@
-# 🤖 AI & ML Welcome Application
+# 🌌 AI & ML Student Showcase Portal
 
-A modern, interactive Android application built for **AI & Machine Learning engineering students**. This app replaces the basic "Welcome to Android" layout with a futuristic, immersive onboarding experience.
+A state-of-the-art Android application designed for **Artificial Intelligence & Machine Learning** students at **ANITS**. This app provides a seamless, high-performance experience to explore courses, department vision, and contact information with a futuristic UI.
+
+---
+
+## 📸 App Walkthrough
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Language-Kotlin_100%25-7F52FF?logo=kotlin&logoColor=white" />
-  <img src="https://img.shields.io/badge/Architecture-Clean_ViewBinding-4285F4" />
-  <img src="https://img.shields.io/badge/UI_Style-Glassmorphism_|_Neumorphism-00BFA5" />
-  <img src="https://img.shields.io/badge/API-26+-brightgreen" />
+  <img src="screenshots/home.png" width="22%" />
+  <img src="screenshots/about.png" width="22%" />
+  <img src="screenshots/courses.png" width="22%" />
+  <img src="screenshots/contact.png" width="22%" />
 </p>
 
 ---
 
-## ✨ Features
+## ✨ Cutting-Edge Features
 
-### 🌟 Immersive UI Morphism
-- **Glassmorphism**: Info cards utilize frosted glass effects (transparency + blur + subtle borders).
-- **Neumorphism**: Buttons feature soft-raised gradients that provide a physical feel.
-- **Motion Morphism**: The background features "glow circles" that float gently, creating a dynamic, alive interface.
+### 🎨 Modern UI/UX
+- **Jetpack Compose Native**: Built entirely with modern declarative UI for maximum fluidity.
+- **Glassmorphism Design**: Frosted glass effects and translucent layers for a premium look.
+- **Dynamic Animations**: Smooth transitions including `FadeIn`, `SlideIn`, and `ScaleIn` effects.
+- **Deep Blue Theme**: A specialized high-contrast dark theme optimized for student focus.
 
-### 🧠 Interactive AI Content
-- **Animated Typewriter**: The main title "Welcome to AI & ML Engineering" reveals itself character-by-character.
-- **Auto-Cycling Messages**: Subtitles change every 3 seconds to inspire students:
-  - *Build Intelligent Systems*
-  - *Explore Neural Networks*
-  - *Shape the Future with AI*
-- **Dot Indicators**: Real-time visual tracking of currently active cycling messages.
+### 📚 Course Exploration
+- **Interactive Course Grid**: Browse through specialized tracks like Generative AI, NNDL, and NLP.
+- **Real-time Image Loading**: Integration with **Coil** for high-resolution course imagery.
+- **Contextual Notifications**: Integrated `Snackbar` feedback for course interactions.
 
-### 🔘 User Interaction Logic
-- **Expandable Info Card**: Tap the "About AI & ML" card to reveal a detailed overview with a smooth chevron rotation animation.
-- **Dynamic Content Button**: The "Discover More" button allows users to manually cycle through AI themes with a spring press effect.
-- **Mini Topic Tiles**: Clickable cards for Deep Learning, NLP, and Computer Vision with interactive scale animations.
+### 🛠️ Robust Navigation
+- **Persistent Bottom Bar**: Quick access to Home, About, Courses, and Contact.
+- **Top-Level Logic**: Intelligent backstack management to ensure smooth page switching.
+- **Floating Action Buttons**: Context-aware CTAs for quick inquiries.
 
 ---
 
-## 🏗️ Technical Implementation
+## 🛠️ Technical Stack
 
-### Architecture
 - **Language**: 100% Kotlin
-- **Layout**: Android XML with Constraint/Linear combinations
-- **View Binding**: Safe and efficient access to UI components
-- **Animations**: A mix of XML animators and Programmatic `ObjectAnimator` for complexity.
+- **UI Framework**: Jetpack Compose
+- **Navigation**: Jetpack Compose Navigation
+- **Image Loading**: Coil
+- **Animations**: Compose Animation API
+- **Architecture**: Modern Android Best Practices
 
-### Project Structure
-```
-app/src/main/
-├── java/com/mad/app/
-│   └── MainActivity.kt            # Core logic & animation management
-├── res/
-│   ├── anim/                      # fade_in, fade_out, slide_up, pop_in
-│   ├── drawable/                  # glass_card_bg, neu_button_bg, ambient glows
-│   ├── layout/                    # activity_main.xml (the heart of the UI)
-│   └── values/                    # AI palette colors, strings, dimens, themes
-└── AndroidManifest.xml
+---
+
+## 🏗️ Project Structure
+
+```text
+app/src/main/java/com/mad/app/
+├── navigation/      # NavGraph and Top-level navigation logic
+├── screens/         # Individual screen composables (Home, About, etc.)
+├── ui/
+│   ├── components/  # Reusable UI elements (GlassCard, CourseCard)
+│   └── theme/       # Custom Color schemes, Typography, and Shapes
+└── MainActivity.kt  # Root entry point with Scaffold container
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation
 
-1. **Clone** the project.
-2. **Open** in Android Studio (Hedgehog or newer).
-3. **Sync** Gradle to download dependencies (Lottie, Material 3, etc.).
-4. **Run** on any device or emulator (API 26+).
+1.  **Clone** the repository:
+    ```bash
+    git clone https://github.com/lunacoderj/Simple-Welcome-Application.git
+    ```
+2.  **Open** in Android Studio (Iguana or newer).
+3.  **Sync** Gradle and **Run** on any device with API 26+.
 
 ---
 
-Built with ❤️ for AI & ML Engineers.
+Built with 💻 and ☕ for future AI Innovators at **ANITS**.
